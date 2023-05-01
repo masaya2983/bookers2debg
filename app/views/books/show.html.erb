@@ -32,9 +32,20 @@
             <% if @user == current_user %>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
          <% end %>
+
 <% end %>
         </tr>
       </table>
+      <table>
+        <tbody id="comment_area">
+        <tr>
+        <%= render 'book_comments/comment', book: @book %>
+        
+       
+
+        </tr>
+      </table>
+
     </div>
   </div>
 </div>

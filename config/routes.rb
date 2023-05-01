@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+ resources :book_comments,only: [:create,:destroy]
+  resources :favorites,only: [:create,:destroy]
+
   root to:'homes#top'
  get 'home/about' => 'homes#about', as: 'about'
   devise_for :users
