@@ -1,25 +1,23 @@
 class BookCommentsController < ApplicationController
 
   def create
-    @book = Book.find(params[:book_id])
-     comment = current_user.book_comemnts.new(book_comment_parms)
-      unless book_comment.save
+    book = Book.find(params[:book_id])
+     　comment = current_user.book_comemnts.new(book_comment_params)
+     　comment.book_id = book.id
       comment.save
-      redirect_to post_image_path(post_image)
-      end
-  end
+      redirect_to request.referer
+　end
+
 
   def destroy
-      book_comment = BookComment.find(params[:id])
-    book_comment.destroy
-    @book_comments = Book.find(book_comment.book_id).book_comments
+       BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
+   redirect_to request.referer
   end
 
    private
 
-   def book_coments_parms
+   def book_coments_params
      parms.require(book_coments).permit(:comment)
    end
-
-
+  end
 end

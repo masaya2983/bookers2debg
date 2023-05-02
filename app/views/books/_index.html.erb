@@ -18,7 +18,7 @@
         <td><%= book.body %></td>
         <% if book.favorited_by?(book) %>
 
-        <td>  <% link_to  book_fsvorites_path(book),method: :delete,class:"text-danger", remote: true do %>
+        <td>  <% link_to  book_fsvorites_path(book),method: :delete do %>
         <i class="fas fa-heart"></i>
           <%= book.favorites.count %></td>
          <% end %>
