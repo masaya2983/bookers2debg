@@ -7,6 +7,7 @@ before_action :authenticate_user!
    @users = User.all
    @user = @book.user
    @book_comment =BookComment.new
+   
   end
 
   def index

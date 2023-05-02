@@ -11,25 +11,25 @@
     <% books.each do |book| %>
       <tr>
         <td><%= link_to(book.user) do %>
-          <%= image_tag book.user.get_profile_image, size:'50x50' %>
-          <% end %>
+             <%= image_tag book.user.get_profile_image, size:'50x50' %>
+            <% end %>
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
         <% if book.favorited_by?(book) %>
 
-  <% link_to  book_fsvorites_path(book),method: :delete do %>
-  <i class="glyphicon glyphicon-heart"></i>
-  <%= book.favorites.count %>
-  <% end %>
+        <td>  <% link_to  book_fsvorites_path(book),method: :delete,class:"text-danger", remote: true do %>
+        <i class="fas fa-heart"></i>
+          <%= book.favorites.count %></td>
+         <% end %>
 
-  <% else %>
-      <%= link_to book_favorites_path(book), method: :post do %>
-       <i class="glyphicon glyphicon-heart-empty"></i>
-       <%= book.favorites.count %>
-      <% end %>
+        <% else %>
+          <td>  <%= link_to book_favorites_path(book), method: :post do %>
+         <i class="fal fa-heart"></i>
+         <<%= book.favorites.count %></td>
+         <% end %>
 
-  <% end %>
+        <% end %>
 
       </tr>
     <% end %>

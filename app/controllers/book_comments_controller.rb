@@ -1,8 +1,8 @@
 class BookCommentsController < ApplicationController
-   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: %i(destroy)
+
   def create
-     comment = curernt_user.book_comemnts.new(post_comment_parms)
+    @book = Book.find(params[:book_id])
+     comment = current_user.book_comemnts.new(book_comment_parms)
       unless book_comment.save
       comment.save
       redirect_to post_image_path(post_image)
@@ -20,11 +20,6 @@ class BookCommentsController < ApplicationController
    def book_coments_parms
      parms.require(book_coments).permit(:comment)
    end
-   def ensure_correct_user
-  　@book=Book.find(params[:id])
-  return if @book.user_id == current_user.id
-    flash[:danger] = '権限がありません'
-    redirect_to books_path
 
-   end
+
 end
